@@ -27,6 +27,8 @@ public final class ThreadNames {
     public static final String T_CONN_BOSS = NS + "-conn-boss";
     public static final String T_GATEWAY_BOSS = NS + "-gateway-boss";
     public static final String T_ADMIN_BOSS = NS + "-admin-boss";
+    public static final String T_MQTT_BOSS = NS + "-mqtt-boss";
+    public static final String T_MQTT_WORKER = NS + "-mqtt-work";
     public static final String T_CONN_WORKER = NS + "-conn-work";
     public static final String T_ADMIN_WORKER = NS + "-admin-work";
     public static final String T_GATEWAY_WORKER = NS + "-gateway-work";

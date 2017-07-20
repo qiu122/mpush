@@ -89,6 +89,7 @@ public interface CC {
             int connect_server_port = cfg.getInt("connect-server-port");
             int gateway_server_port = cfg.getInt("gateway-server-port");
             int admin_server_port = cfg.getInt("admin-server-port");
+            int mqtt_server_port = cfg.getInt("mqtt-server-port");
             int gateway_client_port = cfg.getInt("gateway-client-port");
 
             String gateway_server_net = cfg.getString("gateway-server-net");

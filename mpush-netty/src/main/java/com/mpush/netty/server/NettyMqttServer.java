@@ -4,8 +4,6 @@ import com.mpush.api.service.BaseService;
 import com.mpush.api.service.Listener;
 import com.mpush.api.service.Server;
 import com.mpush.api.service.ServiceException;
-import com.mpush.netty.codec.PacketDecoder;
-import com.mpush.netty.codec.PacketEncoder;
 import com.mpush.tools.config.CC;
 import com.mpush.tools.thread.ThreadNames;
 import io.netty.bootstrap.ServerBootstrap;
@@ -228,8 +226,8 @@ public abstract class NettyMqttServer extends BaseService implements Server {
      * @param pipeline
      */
     protected void initPipeline(ChannelPipeline pipeline) {
-        pipeline.addLast("decoder", getDecoder());
-        pipeline.addLast("encoder", getEncoder());
+        pipeline.addLast("decoder", new MqttDecoder());
+        pipeline.addLast("encoder", MqttEncoder.INSTANCE);
         pipeline.addLast("handler", getChannelHandler());
     }
 

@@ -2,6 +2,7 @@ package com.mpush.core.server;
 
 import com.mpush.api.connection.ConnectionManager;
 import com.mpush.core.handler.AdminHandler;
+import com.mpush.netty.connection.MqttConnectionManager;
 import com.mpush.netty.server.NettyMqttServer;
 import com.mpush.tools.config.CC;
 import com.mpush.tools.thread.ThreadNames;
@@ -20,7 +21,7 @@ public class DeviceMqttServer  extends NettyMqttServer {
 
     private DeviceMqttHandler deviceMqttHandler;
 
-    private ConnectionManager connectionManager = new ServerConnectionManager(false);
+    private MqttConnectionManager connectionManager = new MqttConnectionManager();
 
     public static DeviceMqttServer I() {
         if (I == null) {
@@ -43,7 +44,7 @@ public class DeviceMqttServer  extends NettyMqttServer {
 
     @Override
     protected void initPipeline(ChannelPipeline pipeline) {
-        pipeline.addLast(new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
+//        pipeline.addLast(new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
         super.initPipeline(pipeline);
     }
 

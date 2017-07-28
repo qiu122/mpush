@@ -97,8 +97,8 @@ public class DeviceMqttHandler extends SimpleChannelInboundHandler<MqttMessage> 
                 System.out.println(new String(data));
                 //todo 记录客户端发布消息
                 ctx.channel().writeAndFlush(ackPubMsg).addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
-                MqttService mqttService = new MqttServiceImpl(connectionManager);
-                mqttService.pushMessageToClients("hello back","fooo",new AtomicInteger(1));
+                MqttService mqttService = new MqttServiceImpl();
+                mqttService.pushMessageToClients(new String(data),"foo",new AtomicInteger(1));
                 break;
             case DISCONNECT:
                 fixedHeader = new MqttFixedHeader(MqttMessageType.DISCONNECT,false, MqttQoS.AT_LEAST_ONCE,false,4);

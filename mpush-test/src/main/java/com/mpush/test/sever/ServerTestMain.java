@@ -21,7 +21,7 @@ package com.mpush.test.sever;
 
 import com.mpush.bootstrap.Main;
 import org.junit.Test;
-
+import com.mpush.springboot.Application;
 import java.util.concurrent.locks.LockSupport;
 
 /**
@@ -32,12 +32,14 @@ import java.util.concurrent.locks.LockSupport;
 public class ServerTestMain {
 
     public static void main(String[] args) {
+        Application.startApp(new String[]{});
         start();
     }
 
     @Test
     public void testServer() {
         start();
+        Application.startApp(new String[]{});
         LockSupport.park();
     }
 

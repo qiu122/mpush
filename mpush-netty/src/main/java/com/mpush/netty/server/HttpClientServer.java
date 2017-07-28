@@ -8,4 +8,5 @@ import com.mpush.api.service.Server;
  */
 public abstract class HttpClientServer extends BaseService implements Server {
 
+
 }

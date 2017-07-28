@@ -18,11 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by qiu.xiaolong on 2017/7/25.
  */
 public class MqttServiceImpl implements MqttService{
-    private final MqttConnectionManager connectionManager;
 
-    public MqttServiceImpl(MqttConnectionManager connectionManager) {
-        this.connectionManager = connectionManager;
-    }
     @Override
     public void connect(String clientId, String sessionId, String userId) {
 //        ReusableSession session = ReusableSessionManager.I.querySession(sessionId);
@@ -42,13 +38,13 @@ public class MqttServiceImpl implements MqttService{
     public void pushMessageToClients(String message, String topicName, AtomicInteger nextMessageId ) {
         try {
             final byte[] messageData = message.getBytes();
-            final MqttPublishVariableHeader vheader = new MqttPublishVariableHeader(topicName, nextMessageId.incrementAndGet());
+            final MqttPublishVariableHeader header = new MqttPublishVariableHeader(topicName, nextMessageId.incrementAndGet());
             final MqttFixedHeader fixedHeader = createFixedHeader(MqttMessageType.PUBLISH, topicName.length() + 4 + messageData.length);
-            ConcurrentMap<ChannelId, Connection> allConnections = connectionManager.getAllConnections();
+            ConcurrentMap<ChannelId, Connection> allConnections = MqttConnectionManager.getAllConnections();
             for(ChannelId conn:allConnections.keySet()) {
                 Connection connection = allConnections.get(conn);
                 final ByteBuf payload = Unpooled.wrappedBuffer(messageData);
-                final MqttMessage pmessage = MqttMessageFactory.newMessage(fixedHeader, vheader, payload);
+                final MqttMessage pmessage = MqttMessageFactory.newMessage(fixedHeader, header, payload);
                 connection.getChannel().writeAndFlush(pmessage);
             }
         }catch(Exception ex) {

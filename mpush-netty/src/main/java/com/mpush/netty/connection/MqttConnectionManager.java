@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentMap;
  * Created by qiu.xiaolong on 2017/7/27.
  */
 public class MqttConnectionManager implements ConnectionManager {
-    private final ConcurrentMap<ChannelId, Connection> connections = new ConcurrentHashMap<>();
+    private final static ConcurrentMap<ChannelId, Connection> connections = new ConcurrentHashMap<>();
 
     @Override
     public Connection get(Channel channel) {
@@ -34,8 +34,8 @@ public class MqttConnectionManager implements ConnectionManager {
         return connections.size();
     }
 
-    public ConcurrentMap<ChannelId, Connection> getAllConnections(){
-        return this.connections;
+    public static ConcurrentMap<ChannelId, Connection> getAllConnections(){
+        return connections;
     }
 
     @Override

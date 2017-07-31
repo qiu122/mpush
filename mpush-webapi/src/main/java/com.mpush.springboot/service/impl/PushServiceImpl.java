@@ -2,8 +2,8 @@ package com.mpush.springboot.service.impl;
 
 import com.mpush.common.message.PushMessage;
 import com.mpush.springboot.service.PushService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PushServiceImpl implements PushService{
 
-    @Autowired
-    private RedisTemplate redisTemplate;
+//    @Autowired
+//    private RedisTemplate redisTemplate;
 
     public boolean pushMessage(PushMessage message){
 

@@ -23,7 +23,6 @@ import java.util.List;
  * 这是mongo 的配置类
  */
 @Configuration
-@EnableConfigurationProperties(UserDefinedProperty.class)
 public class MongoConfig {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
